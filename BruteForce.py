@@ -1,0 +1,63 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/rotito/Brute/blob/main/BruteForce.py\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import requests\n",
+        "\n",
+        "# URL base del servidor web (modifica según tu caso)\n",
+        "base_url = \"http://134.209.74.96/\"\n",
+        "\n",
+        "# Archivo de diccionario con nombres de archivos y carpetas\n",
+        "diccionario_file = \"common.txt\"\n",
+        "\n",
+        "# Leer los elementos del diccionario\n",
+        "with open(diccionario_file, \"r\", encoding=\"utf-8\") as file:\n",
+        "    elementos = [line.strip() for line in file.readlines()]\n",
+        "\n",
+        "# Verificar cada elemento en el servidor\n",
+        "for elemento in elementos:\n",
+        "    url = base_url + elemento\n",
+        "    response = requests.get(url)\n",
+        "\n",
+        "    if response.status_code == 200:  # El archivo/carpeta existe\n",
+        "        print(f\"[+] Encontrado: {url}\")\n",
+        "    elif response.status_code == 403:  # Acceso prohibido, podría existir\n",
+        "        print(f\"[!] Posible existencia (403): {url}\")\n",
+        "    else:\n",
+        "        pass\n",
+        "    #    print(f\"[-] No encontrado: {url}\")\n",
+        "\n",
+        "print(\"Escaneo completado.\")"
+      ],
+      "metadata": {
+        "id": "jUdtsU2j5vWl"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "name": "Te damos la bienvenida a Colaboratory",
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
