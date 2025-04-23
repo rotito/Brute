@@ -1,7 +1,7 @@
 import requests
 
 # URL base del servidor web (modifica según tu caso)
-base_url = "http://134.209.74.96/"
+base_url = "http://134.209.74.x/"
 
 # Archivo de diccionario con nombres de archivos y carpetas
 diccionario_file = "common.txt"
